@@ -1,0 +1,7 @@
+django-filter==21.1
+Django==4.0.4
+djangorestframework==3.13.1
+hiredis==2.0.0
+redis==4.3.1
+aws-wsgi==0.2.7
+cx-Oracle==8.3.0

@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  django_oracle_db:
+    build: .
+    container_name: djangoOracleDB
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: bash -c "pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - REDIS_LOCATION=${REDIS_LOCATION}  # https://docs.docker.com/desktop/windows/networking/
+      - ORACLEDB_PASSWORD=${ORACLEDB_PASSWORD}
+      - ORACLEDB_USER=${ORACLEDB_USER}
+      - ORACLEDB_NAME=${ORACLEDB_NAME}
+      - ORACLEDB_HOST=${ORACLEDB_HOST}
+      - ORACLEDB_PORT=${ORACLEDB_PORT}
+      - DEBUG=${DEBUG}
+      - SECRET_KEY=${SECRET_KEY}
