@@ -1,0 +1,5 @@
+# https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/#using-routers
+# rest_framework.routers.BaseRouter.register
+prefix: pessoa
+viewset: api.views.pessoa_view_set.PessoaViewSet
+# basename:

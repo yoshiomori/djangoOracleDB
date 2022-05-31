@@ -1,0 +1,5 @@
+# https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/#using-routers
+# rest_framework.routers.BaseRouter.register
+prefix: info_table
+viewset: api.views.info_table_view_set.InfoTableViewSet
+# basename:

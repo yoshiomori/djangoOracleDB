@@ -1,12 +1,6 @@
 from rest_framework import serializers
 
-from api.models import Pessoa, InfoTable
-
-
-class PessoaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Pessoa
-        fields = '__all__'
+from api.models import InfoTable
 
 
 class InfoTableSerializer(serializers.ModelSerializer):

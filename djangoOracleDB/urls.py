@@ -13,14 +13,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import logging
+import re
+from glob import glob
+from importlib import import_module
+from pathlib import Path
+
 from django.urls import path, include
 from rest_framework import routers
+import yaml
 
 import api.views
+import api.views.info_table_view_set
+import api.views.pessoa_view_set
+
+logger = logging.getLogger(__name__)
 
 router = routers.DefaultRouter()
-router.register(r'pessoa', api.views.PessoaViewSet)
-router.register(r'info_table', api.views.InfoTableViewSet)
+for x in Path('djangoOracleDB/routes/').glob('*.yaml'):
+    try:
+        route_dict = yaml.full_load(x.read_text())
+        viewset = route_dict['viewset']
+        group_dict = re.match(r'^(?P<module>.+)\.(?P<class>[^.]+)$', viewset).groupdict()
+        route_dict['viewset'] = getattr(import_module(group_dict['module']), group_dict['class'])
+        router.register(**route_dict)
+    except Exception as e:
+        logger.warning(e)
 
 urlpatterns = [
     path('', include(router.urls))
