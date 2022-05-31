@@ -111,6 +111,9 @@ REST_FRAMEWORK = {
     'UNAUTHENTICATED_USER': False,
     'SCHEMA_COERCE_PATH_PK': False,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
 }
 
 CACHES = {
