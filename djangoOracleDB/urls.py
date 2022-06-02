@@ -15,17 +15,12 @@ Including another URLconf
 """
 import logging
 import re
-from glob import glob
 from importlib import import_module
 from pathlib import Path
 
+import yaml
 from django.urls import path, include
 from rest_framework import routers
-import yaml
-
-import api.views
-import api.views.info_table_view_set
-import api.views.pessoa_view_set
 
 logger = logging.getLogger(__name__)
 
